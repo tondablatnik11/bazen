@@ -30,7 +30,7 @@ interface AnalyzeResponse {
   _debug?: string;
 }
 
-const MODEL = "z-ai/glm-5.2";
+const MODEL = "meta/llama-3.2-90b-vision-instruct";
 const API_BASE = "https://integrate.api.nvidia.com/v1";
 
 /**
