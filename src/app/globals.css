@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-pool-50 text-slate-900 antialiased;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.10) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(125, 211, 252, 0.08) 0px, transparent 50%);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.18) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.14) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(125, 211, 252, 0.10) 0px, transparent 50%);
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-lg shadow-pool-200/30;
+  }
+  .dark .glass-card {
+    @apply bg-slate-900/60 border-slate-700/60 shadow-black/40;
+  }
+
+  .glass-card-strong {
+    @apply rounded-2xl bg-white/90 backdrop-blur-xl border border-pool-200/50 shadow-xl shadow-pool-300/20;
+  }
+  .dark .glass-card-strong {
+    @apply bg-slate-900/85 border-slate-700/70 shadow-black/50;
+  }
+
+  .pool-input {
+    @apply w-full h-3 rounded-full appearance-none cursor-pointer;
+    background: linear-gradient(to right, rgb(186 230 253) 0%, rgb(14 165 233) 100%);
+  }
+  .dark .pool-input {
+    background: linear-gradient(to right, rgb(30 58 138) 0%, rgb(56 189 248) 100%);
+  }
+
+  .pool-input::-webkit-slider-thumb {
+    @apply appearance-none w-7 h-7 rounded-full bg-white border-4 border-pool-500 shadow-lg cursor-pointer transition-transform;
+  }
+  .dark .pool-input::-webkit-slider-thumb {
+    @apply bg-slate-100 border-pool-400 shadow-black/50;
+  }
+  .pool-input::-moz-range-thumb {
+    @apply w-7 h-7 rounded-full bg-white border-4 border-pool-500 shadow-lg cursor-pointer;
+  }
+  .dark .pool-input::-moz-range-thumb {
+    @apply bg-slate-100 border-pool-400;
+  }
+
+  .pool-input::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .pool-input::-webkit-slider-thumb:active { transform: scale(1.25); }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #0c4a6e 0%, #0ea5e9 100%);
+  }
+  .dark .gradient-text {
+    background-image: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);
+  }
+
+  .btn-primary {
+    @apply px-5 py-3 rounded-xl bg-pool-600 text-white font-medium shadow-lg shadow-pool-500/30 hover:bg-pool-700 active:scale-[0.98] transition-all;
+  }
+
+  .step-number {
+    @apply flex-shrink-0 w-9 h-9 rounded-full bg-pool-100 text-pool-700 font-bold flex items-center justify-center text-sm border-2 border-pool-300;
+  }
+  .dark .step-number {
+    @apply bg-pool-950/60 text-pool-200 border-pool-700;
+  }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] { -moz-appearance: text-field; }
+
+/* Tisk – pouze výsledky, bez ovládacích prvků */
+@media print {
+  body {
+    background: white !important;
+    background-image: none !important;
+    color: black !important;
+  }
+  header, .fixed, footer, [role="tablist"], button, .glass-card-strong button {
+    display: none !important;
+  }
+  .glass-card, .glass-card-strong {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  section[aria-labelledby="inputs-heading"],
+  .fixed,
+  header.sticky {
+    display: none !important;
+  }
+  main { padding: 0 !important; }
+  .grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
+  h2, h3, h4 { color: black !important; -webkit-text-fill-color: black !important; }
+  .gradient-text {
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+    color: black !important;
+  }
+  a { color: black !important; text-decoration: none !important; }
+}
